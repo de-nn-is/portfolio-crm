@@ -5,8 +5,9 @@ interface DeleteConfirmModalProps {
   isOpen: boolean;
   onClose: () => void;
   onConfirm: () => void;
-  companyName: string;
-  customerName: string;
+  companyName?: string;
+  customerName?: string;
+  itemType?: 'customer' | 'deal';
 }
 
 export const DeleteConfirmModal = ({
@@ -15,8 +16,10 @@ export const DeleteConfirmModal = ({
   onConfirm,
   companyName,
   customerName,
+  itemType = 'customer',
 }: DeleteConfirmModalProps) => {
-  const { t } = useTranslation(['customers', 'common']);
+  const namespace = itemType === 'customer' ? 'customers' : 'deals';
+  const { t } = useTranslation([namespace, 'common']);
   const [inputValue, setInputValue] = useState('');
   const confirmText = companyName || customerName;
 
@@ -38,14 +41,14 @@ export const DeleteConfirmModal = ({
         <div className="bg-gradient-to-r from-red-500 to-pink-500 p-6">
           <h3 className="text-xl font-bold text-white flex items-center gap-2">
             <span className="material-icons">warning</span>
-            {t('delete', { ns: 'customers' })}
+            {t('delete', { ns: namespace })}
           </h3>
         </div>
 
         {/* Content */}
         <div className="p-6 space-y-4">
           <p className="text-gray-700 dark:text-slate-300">
-            {t('messages.deleteConfirm', { ns: 'customers' })}
+            {t('messages.deleteConfirm', { ns: namespace })}
           </p>
           
           <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-500/20 rounded-lg p-4">
@@ -83,7 +86,7 @@ export const DeleteConfirmModal = ({
             disabled={!isValid}
             className="px-6 py-2.5 rounded-lg bg-gradient-to-r from-red-500 to-pink-500 text-white font-medium hover:from-red-600 hover:to-pink-600 transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {t('delete', { ns: 'customers' })}
+            {t('delete', { ns: namespace })}
           </button>
         </div>
       </div>

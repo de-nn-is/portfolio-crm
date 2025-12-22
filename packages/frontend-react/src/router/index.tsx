@@ -46,6 +46,10 @@ export const router = createBrowserRouter([
         element: <DealDetail />,
       },
       {
+        path: 'deals/:id/edit',
+        element: <DealDetail />,
+      },
+      {
         path: 'settings',
         element: <Settings />,
       },

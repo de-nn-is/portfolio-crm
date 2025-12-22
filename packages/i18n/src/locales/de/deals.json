@@ -1,10 +1,10 @@
 {
-  "title": "Deals",
-  "create": "Neuer Deal",
-  "edit": "Deal bearbeiten",
-  "delete": "Deal löschen",
-  "details": "Deal-Details",
-  "list": "Deal-Liste",
+  "title": "Aufträge",
+  "create": "Neuer Auftrag",
+  "edit": "Auftrag bearbeiten",
+  "delete": "Auftrag löschen",
+  "details": "Auftragsdetails",
+  "list": "Auftragsliste",
   "fields": {
     "title": "Titel",
     "description": "Beschreibung",
@@ -22,29 +22,29 @@
     "lost": "Verloren"
   },
   "messages": {
-    "createSuccess": "Deal erfolgreich erstellt",
-    "updateSuccess": "Deal erfolgreich aktualisiert",
-    "deleteSuccess": "Deal erfolgreich gelöscht",
-    "deleteConfirm": "Möchten Sie diesen Deal wirklich löschen?",
-    "notFound": "Deal nicht gefunden",
+    "createSuccess": "Auftrag erfolgreich erstellt",
+    "updateSuccess": "Auftrag erfolgreich aktualisiert",
+    "deleteSuccess": "Auftrag erfolgreich gelöscht",
+    "deleteConfirm": "Möchten Sie diesen Auftrag wirklich löschen?",
+    "notFound": "Auftrag nicht gefunden",
     "statusChanged": "Status erfolgreich geändert"
   },
   "errors": {
-    "createFailed": "Deal konnte nicht erstellt werden",
-    "updateFailed": "Deal konnte nicht aktualisiert werden",
-    "deleteFailed": "Deal konnte nicht gelöscht werden",
-    "loadFailed": "Deals konnten nicht geladen werden"
+    "createFailed": "Auftrag konnte nicht erstellt werden",
+    "updateFailed": "Auftrag konnte nicht aktualisiert werden",
+    "deleteFailed": "Auftrag konnte nicht gelöscht werden",
+    "loadFailed": "Aufträge konnten nicht geladen werden"
   },
   "filters": {
     "all": "Alle",
     "byStatus": "Nach Status filtern",
     "byCustomer": "Nach Kunde filtern",
-    "search": "Deals durchsuchen"
+    "search": "Aufträge durchsuchen"
   },
   "empty": {
-    "title": "Keine Deals",
-    "description": "Erstellen Sie Ihren ersten Deal",
-    "action": "Deal erstellen"
+    "title": "Keine Aufträge",
+    "description": "Erstellen Sie Ihren ersten Auftrag",
+    "action": "Auftrag erstellen"
   },
   "stats": {
     "totalValue": "Gesamtwert",
