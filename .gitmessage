@@ -1,0 +1,27 @@
+# <type>(<scope>): <subject>
+#
+# <body>
+#
+# <footer>
+
+# Type: feat, fix, docs, style, refactor, perf, test, chore, ci, build
+# Scope: backend, frontend-react, frontend-vue, i18n, types, shared-utils, docs, deps
+# Subject: Brief description (max 50 chars, imperative mood)
+# Body: Detailed description (optional, wrap at 72 chars)
+# Footer: Breaking changes, issue references (optional)
+#
+# Examples:
+# feat(backend): add customer CRUD endpoints
+# fix(frontend-react): resolve theme toggle state issue
+# docs(readme): update installation instructions
+# refactor(i18n): restructure translation namespaces
+# test(types): add unit tests for customer types
+# chore(deps): update dependencies
+#
+# Breaking Changes:
+# BREAKING CHANGE: description of breaking change
+#
+# Issue References:
+# Fixes #123
+# Closes #456
+# Related to #789

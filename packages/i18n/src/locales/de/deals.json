@@ -1,0 +1,55 @@
+{
+  "title": "Deals",
+  "create": "Neuer Deal",
+  "edit": "Deal bearbeiten",
+  "delete": "Deal löschen",
+  "details": "Deal-Details",
+  "list": "Deal-Liste",
+  "fields": {
+    "title": "Titel",
+    "description": "Beschreibung",
+    "value": "Wert",
+    "customer": "Kunde",
+    "status": "Status",
+    "createdAt": "Erstellt am",
+    "updatedAt": "Aktualisiert am",
+    "closedAt": "Abgeschlossen am"
+  },
+  "status": {
+    "lead": "Lead",
+    "inProgress": "In Bearbeitung",
+    "won": "Gewonnen",
+    "lost": "Verloren"
+  },
+  "messages": {
+    "createSuccess": "Deal erfolgreich erstellt",
+    "updateSuccess": "Deal erfolgreich aktualisiert",
+    "deleteSuccess": "Deal erfolgreich gelöscht",
+    "deleteConfirm": "Möchten Sie diesen Deal wirklich löschen?",
+    "notFound": "Deal nicht gefunden",
+    "statusChanged": "Status erfolgreich geändert"
+  },
+  "errors": {
+    "createFailed": "Deal konnte nicht erstellt werden",
+    "updateFailed": "Deal konnte nicht aktualisiert werden",
+    "deleteFailed": "Deal konnte nicht gelöscht werden",
+    "loadFailed": "Deals konnten nicht geladen werden"
+  },
+  "filters": {
+    "all": "Alle",
+    "byStatus": "Nach Status filtern",
+    "byCustomer": "Nach Kunde filtern",
+    "search": "Deals durchsuchen"
+  },
+  "empty": {
+    "title": "Keine Deals",
+    "description": "Erstellen Sie Ihren ersten Deal",
+    "action": "Deal erstellen"
+  },
+  "stats": {
+    "totalValue": "Gesamtwert",
+    "averageValue": "Durchschnittswert",
+    "wonDeals": "Gewonnene Deals",
+    "pipeline": "Pipeline"
+  }
+}

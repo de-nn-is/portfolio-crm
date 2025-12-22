@@ -1,0 +1,49 @@
+{
+  "name": "portfolio-crm-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio CRM - Full-stack monorepo with React, Vue, and GraphQL",
+  "author": "Dennis",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "prepare": "husky install",
+    "dev": "turbo run dev --parallel",
+    "dev:backend": "turbo run dev --filter=backend",
+    "dev:react": "turbo run dev --filter=frontend-react",
+    "dev:vue": "turbo run dev --filter=frontend-vue",
+    "build": "turbo run build",
+    "build:shared": "turbo run build --filter=\"@crm/*\"",
+    "test": "turbo run test",
+    "test:coverage": "turbo run test:coverage",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,yml,yaml,css,scss}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,yml,yaml,css,scss}\"",
+    "clean": "turbo run clean && rm -rf node_modules .turbo",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1",
+    "turbo": "^2.7.1",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.12.0"
+}

@@ -1,0 +1,40 @@
+{
+  "name": "frontend-vue",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Vue frontend for Portfolio CRM",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.8.8",
+    "@crm/i18n": "workspace:*",
+    "@crm/types": "workspace:*",
+    "@crm/shared-utils": "workspace:*",
+    "graphql": "^16.8.1",
+    "i18next": "^23.7.9",
+    "vue": "^3.3.13",
+    "vue-i18n": "^9.8.0",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@testing-library/vue": "^8.0.1",
+    "@types/node": "^20.10.5",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "@vitest/ui": "^1.0.4",
+    "@vue/test-utils": "^2.4.3",
+    "autoprefixer": "^10.4.16",
+    "jsdom": "^23.0.1",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.0",
+    "typescript": "~5.6.3",
+    "vite": "^5.0.8",
+    "vitest": "^1.0.4",
+    "vue-tsc": "^2.0.0"
+  }
+}

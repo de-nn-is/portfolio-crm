@@ -1,0 +1,53 @@
+{
+  "app": {
+    "name": "Portfolio CRM",
+    "tagline": "Verwalten Sie Ihre Kunden und Deals"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "customers": "Kunden",
+    "deals": "Deals",
+    "profile": "Profil",
+    "logout": "Abmelden"
+  },
+  "actions": {
+    "create": "Erstellen",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "search": "Suchen",
+    "filter": "Filtern",
+    "reset": "Zurücksetzen",
+    "submit": "Absenden",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Zurück",
+    "close": "Schließen",
+    "confirm": "Bestätigen"
+  },
+  "status": {
+    "loading": "Lädt...",
+    "error": "Fehler",
+    "success": "Erfolgreich",
+    "noData": "Keine Daten verfügbar",
+    "notFound": "Nicht gefunden"
+  },
+  "validation": {
+    "required": "Dieses Feld ist erforderlich",
+    "invalidEmail": "Ungültige E-Mail-Adresse",
+    "invalidPhone": "Ungültige Telefonnummer",
+    "tooShort": "Zu kurz",
+    "tooLong": "Zu lang"
+  },
+  "theme": {
+    "light": "Hell",
+    "dark": "Dunkel",
+    "toggle": "Theme umschalten"
+  },
+  "language": {
+    "de": "Deutsch",
+    "en": "English",
+    "switch": "Sprache wechseln"
+  }
+}

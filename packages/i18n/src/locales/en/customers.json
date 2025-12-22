@@ -1,0 +1,45 @@
+{
+  "title": "Customers",
+  "create": "New Customer",
+  "edit": "Edit Customer",
+  "delete": "Delete Customer",
+  "details": "Customer Details",
+  "list": "Customer List",
+  "fields": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "company": "Company",
+    "status": "Status",
+    "createdAt": "Created at",
+    "updatedAt": "Updated at"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "lead": "Lead"
+  },
+  "messages": {
+    "createSuccess": "Customer created successfully",
+    "updateSuccess": "Customer updated successfully",
+    "deleteSuccess": "Customer deleted successfully",
+    "deleteConfirm": "Are you sure you want to delete this customer?",
+    "notFound": "Customer not found"
+  },
+  "errors": {
+    "createFailed": "Failed to create customer",
+    "updateFailed": "Failed to update customer",
+    "deleteFailed": "Failed to delete customer",
+    "loadFailed": "Failed to load customers"
+  },
+  "filters": {
+    "all": "All",
+    "byStatus": "Filter by status",
+    "search": "Search customers"
+  },
+  "empty": {
+    "title": "No customers",
+    "description": "Create your first customer",
+    "action": "Create customer"
+  }
+}

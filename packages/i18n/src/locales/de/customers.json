@@ -1,0 +1,45 @@
+{
+  "title": "Kunden",
+  "create": "Neuer Kunde",
+  "edit": "Kunde bearbeiten",
+  "delete": "Kunde löschen",
+  "details": "Kundendetails",
+  "list": "Kundenliste",
+  "fields": {
+    "name": "Name",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "company": "Firma",
+    "status": "Status",
+    "createdAt": "Erstellt am",
+    "updatedAt": "Aktualisiert am"
+  },
+  "status": {
+    "active": "Aktiv",
+    "inactive": "Inaktiv",
+    "lead": "Lead"
+  },
+  "messages": {
+    "createSuccess": "Kunde erfolgreich erstellt",
+    "updateSuccess": "Kunde erfolgreich aktualisiert",
+    "deleteSuccess": "Kunde erfolgreich gelöscht",
+    "deleteConfirm": "Möchten Sie diesen Kunden wirklich löschen?",
+    "notFound": "Kunde nicht gefunden"
+  },
+  "errors": {
+    "createFailed": "Kunde konnte nicht erstellt werden",
+    "updateFailed": "Kunde konnte nicht aktualisiert werden",
+    "deleteFailed": "Kunde konnte nicht gelöscht werden",
+    "loadFailed": "Kunden konnten nicht geladen werden"
+  },
+  "filters": {
+    "all": "Alle",
+    "byStatus": "Nach Status filtern",
+    "search": "Kunden durchsuchen"
+  },
+  "empty": {
+    "title": "Keine Kunden",
+    "description": "Erstellen Sie Ihren ersten Kunden",
+    "action": "Kunde erstellen"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "@crm/i18n",
+  "version": "1.0.0",
+  "description": "Shared i18n translations for Portfolio CRM",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage"
+  },
+  "dependencies": {
+    "i18next": "^23.7.9"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "typescript": "^5.3.3",
+    "vitest": "^1.0.4"
+  }
+}
