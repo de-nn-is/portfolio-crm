@@ -1,0 +1,21 @@
+{
+  "title": "Dashboard",
+  "welcome": "Willkommen zurück",
+  "stats": {
+    "totalCustomers": "Kunden gesamt",
+    "activeCustomers": "Aktive Kunden",
+    "totalDeals": "Deals gesamt",
+    "wonDeals": "Gewonnene Deals",
+    "revenue": "Umsatz",
+    "growth": "Wachstum"
+  },
+  "recentActivity": {
+    "title": "Letzte Aktivitäten",
+    "noActivity": "Keine Aktivitäten"
+  },
+  "charts": {
+    "salesOverview": "Verkaufsübersicht",
+    "customerGrowth": "Kundenwachstum",
+    "dealsPipeline": "Deal-Pipeline"
+  }
+}

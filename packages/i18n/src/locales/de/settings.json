@@ -1,0 +1,31 @@
+{
+  "title": "Einstellungen",
+  "sections": {
+    "appearance": "Darstellung",
+    "language": "Sprache",
+    "account": "Account",
+    "notifications": "Benachrichtigungen"
+  },
+  "appearance": {
+    "title": "Darstellung",
+    "description": "Passe das Erscheinungsbild der Anwendung an",
+    "theme": "Theme",
+    "themeDescription": "Wähle zwischen hellem und dunklem Theme",
+    "darkMode": "Dunkles Theme",
+    "lightMode": "Helles Theme"
+  },
+  "language": {
+    "title": "Sprache",
+    "description": "Wähle deine bevorzugte Sprache",
+    "current": "Aktuelle Sprache"
+  },
+  "account": {
+    "title": "Account",
+    "description": "Verwalte deine Accounteinstellungen",
+    "profile": "Profil",
+    "security": "Sicherheit",
+    "logout": "Abmelden"
+  },
+  "builtWith": "Erstellt mit React, GraphQL und TypeScript",
+  "about": "Über diese Anwendung"
+}

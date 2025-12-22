@@ -8,11 +8,22 @@ module.exports = {
     extend: {
       colors: {
         // Using CSS variables for dynamic theming
-        primary: 'var(--color-primary)',
+        primary: {
+          DEFAULT: 'var(--color-primary)',
+          dark: 'var(--color-primary)',
+        },
         secondary: 'var(--color-secondary)',
         accent: 'var(--color-accent)',
+        
         background: 'var(--color-background)',
-        surface: 'var(--color-surface)',
+        
+        surface: {
+          DEFAULT: 'var(--color-surface)',
+          primary: 'var(--color-background)',
+          secondary: 'var(--color-surface)',
+          hover: 'var(--color-border)',
+        },
+        
         border: 'var(--color-border)',
         
         text: {
@@ -20,6 +31,11 @@ module.exports = {
           secondary: 'var(--color-text-secondary)',
           disabled: 'var(--color-text-disabled)',
         },
+        
+        error: 'var(--color-error)',
+        warning: 'var(--color-warning)',
+        success: 'var(--color-success)',
+        info: 'var(--color-info)',
         
         status: {
           error: 'var(--color-error)',

@@ -1,0 +1,31 @@
+{
+  "title": "Settings",
+  "sections": {
+    "appearance": "Appearance",
+    "language": "Language",
+    "account": "Account",
+    "notifications": "Notifications"
+  },
+  "appearance": {
+    "title": "Appearance",
+    "description": "Customize the appearance of the application",
+    "theme": "Theme",
+    "themeDescription": "Choose between light and dark theme",
+    "darkMode": "Dark Theme",
+    "lightMode": "Light Theme"
+  },
+  "language": {
+    "title": "Language",
+    "description": "Choose your preferred language",
+    "current": "Current Language"
+  },
+  "account": {
+    "title": "Account",
+    "description": "Manage your account settings",
+    "profile": "Profile",
+    "security": "Security",
+    "logout": "Logout"
+  },
+  "builtWith": "Built with React, GraphQL and TypeScript",
+  "about": "About this Application"
+}

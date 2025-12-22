@@ -1,0 +1,21 @@
+{
+  "title": "Dashboard",
+  "welcome": "Welcome back",
+  "stats": {
+    "totalCustomers": "Total Customers",
+    "activeCustomers": "Active Customers",
+    "totalDeals": "Total Deals",
+    "wonDeals": "Won Deals",
+    "revenue": "Revenue",
+    "growth": "Growth"
+  },
+  "recentActivity": {
+    "title": "Recent Activity",
+    "noActivity": "No activity"
+  },
+  "charts": {
+    "salesOverview": "Sales Overview",
+    "customerGrowth": "Customer Growth",
+    "dealsPipeline": "Deals Pipeline"
+  }
+}

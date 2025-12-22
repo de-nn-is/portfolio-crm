@@ -3,6 +3,13 @@
     "name": "Portfolio CRM",
     "tagline": "Manage your customers and deals"
   },
+  "nav": {
+    "dashboard": "Dashboard",
+    "customers": "Customers",
+    "deals": "Deals",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
   "navigation": {
     "dashboard": "Dashboard",
     "customers": "Customers",
@@ -24,7 +31,8 @@
     "next": "Next",
     "previous": "Previous",
     "close": "Close",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "view": "View"
   },
   "status": {
     "loading": "Loading...",
@@ -32,6 +40,14 @@
     "success": "Success",
     "noData": "No data available",
     "notFound": "Not found"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No"
   },
   "validation": {
     "required": "This field is required",
@@ -48,6 +64,8 @@
   "language": {
     "de": "Deutsch",
     "en": "English",
-    "switch": "Switch language"
+    "switch": "Switch language",
+    "toggle": "Switch language"
   }
 }
+
