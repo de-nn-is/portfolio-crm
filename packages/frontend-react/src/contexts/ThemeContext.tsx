@@ -23,7 +23,7 @@ interface ThemeProviderProps {
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [theme, setTheme] = useState<ThemeMode>(() => {
     const saved = localStorage.getItem('theme');
-    return (saved as ThemeMode) || 'light';
+    return (saved as ThemeMode) || 'dark'; // Default to dark for modern tech theme
   });
 
   useEffect(() => {

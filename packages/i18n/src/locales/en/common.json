@@ -31,9 +31,13 @@
     "next": "Next",
     "previous": "Previous",
     "close": "Close",
-    "confirm": "Confirm",
-    "view": "View"
+    "confirm": "Confirm"
   },
+  "view": "View",
+  "actionsColumn": "Actions",
+  "error": "Error",
+  "save": "Save",
+  "cancel": "Cancel",
   "status": {
     "loading": "Loading...",
     "error": "Error",

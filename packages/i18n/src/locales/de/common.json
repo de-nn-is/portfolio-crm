@@ -31,9 +31,13 @@
     "next": "Weiter",
     "previous": "Zurück",
     "close": "Schließen",
-    "confirm": "Bestätigen",
-    "view": "Ansehen"
+    "confirm": "Bestätigen"
   },
+  "view": "Ansehen",
+  "actionsColumn": "Aktionen",
+  "error": "Fehler",
+  "save": "Speichern",
+  "cancel": "Abbrechen",
   "status": {
     "loading": "Lädt...",
     "error": "Fehler",
