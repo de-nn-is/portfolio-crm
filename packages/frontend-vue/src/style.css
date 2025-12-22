@@ -1,3 +1,6 @@
+/* Import shared theme variables */
+@import '@crm/shared-utils/theme.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
