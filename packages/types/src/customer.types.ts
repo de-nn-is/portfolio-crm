@@ -11,8 +11,8 @@ export interface Customer {
   firstName: string;
   lastName: string;
   email: string;
-  phone: string;
-  company: string;
+  phone?: string | null;
+  company?: string | null;
   status: CustomerStatus;
   address?: string;
   notes?: string;

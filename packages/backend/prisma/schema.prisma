@@ -1,0 +1,69 @@
+// This is your Prisma schema file
+// Learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String
+  email     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+enum CustomerStatus {
+  ACTIVE
+  INACTIVE
+  LEAD
+}
+
+model Customer {
+  id        String         @id @default(cuid())
+  firstName String
+  lastName  String
+  email     String         @unique
+  phone     String?
+  company   String?
+  status    CustomerStatus @default(LEAD)
+  address   String?
+  notes     String?
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  deals     Deal[]
+
+  @@map("customers")
+}
+
+enum DealStatus {
+  LEAD
+  IN_PROGRESS
+  WON
+  LOST
+}
+
+model Deal {
+  id          String     @id @default(cuid())
+  title       String
+  description String?
+  value       Float
+  currency    String     @default("EUR")
+  status      DealStatus @default(LEAD)
+  customerId  String
+  customer    Customer   @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  startDate   DateTime   @default(now())
+  endDate     DateTime?
+  notes       String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@map("deals")
+}

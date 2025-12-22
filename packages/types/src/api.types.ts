@@ -14,9 +14,10 @@ export interface PaginatedResponse<T> {
 
 export interface DashboardStats {
   totalCustomers: number;
-  activeDeals: number;
+  activeCustomers: number;
+  totalDeals: number;
+  wonDeals: number;
   totalRevenue: number;
-  recentActivities: Activity[];
 }
 
 export interface Activity {
