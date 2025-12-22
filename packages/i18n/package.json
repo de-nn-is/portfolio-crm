@@ -1,6 +1,7 @@
 {
   "name": "@crm/i18n",
   "version": "1.0.0",
+  "type": "module",
   "description": "Shared i18n translations for Portfolio CRM",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

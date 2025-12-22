@@ -1,6 +1,7 @@
 {
   "name": "@crm/shared-utils",
   "version": "1.0.0",
+  "type": "module",
   "description": "Shared utilities for Portfolio CRM",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

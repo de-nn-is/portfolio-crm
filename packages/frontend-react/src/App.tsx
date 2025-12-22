@@ -1,15 +1,20 @@
+import { ApolloProvider } from '@apollo/client';
+import { RouterProvider } from 'react-router-dom';
+import { apolloClient } from './lib/apollo';
+import { router } from './router';
+import { AuthProvider } from './contexts/AuthContext';
+import { ThemeProvider } from './contexts/ThemeContext';
+import './i18n';
+
 function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-          Portfolio CRM - React
-        </h1>
-        <p className="text-gray-600 dark:text-gray-400">
-          React frontend will be implemented in Phase 4
-        </p>
-      </div>
-    </div>
+    <ApolloProvider client={apolloClient}>
+      <AuthProvider>
+        <ThemeProvider>
+          <RouterProvider router={router} />
+        </ThemeProvider>
+      </AuthProvider>
+    </ApolloProvider>
   );
 }
 

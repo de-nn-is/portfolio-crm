@@ -1,8 +1,8 @@
 // Shared i18n configuration and exports
 import i18n from 'i18next';
 
-export * as de from './locales/de';
-export * as en from './locales/en';
+export * as de from './locales/de/index.js';
+export * as en from './locales/en/index.js';
 
 export const defaultLanguage = 'de';
 export const supportedLanguages = ['de', 'en'] as const;
