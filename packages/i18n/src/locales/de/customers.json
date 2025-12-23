@@ -30,7 +30,8 @@
     "createFailed": "Kunde konnte nicht erstellt werden",
     "updateFailed": "Kunde konnte nicht aktualisiert werden",
     "deleteFailed": "Kunde konnte nicht gelöscht werden",
-    "loadFailed": "Kunden konnten nicht geladen werden"
+    "loadFailed": "Kunden konnten nicht geladen werden",
+    "invalidStatus": "Ungültiger Status"
   },
   "filters": {
     "all": "Alle",

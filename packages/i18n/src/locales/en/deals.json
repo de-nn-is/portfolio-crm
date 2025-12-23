@@ -33,13 +33,21 @@
     "createFailed": "Failed to create deal",
     "updateFailed": "Failed to update deal",
     "deleteFailed": "Failed to delete deal",
-    "loadFailed": "Failed to load deals"
+    "loadFailed": "Failed to load deals",
+    "invalidStatus": "Invalid status",
+    "invalidValue": "Value must be positive",
+    "customerRequired": "Customer must be selected"
   },
   "filters": {
     "all": "All",
     "byStatus": "Filter by status",
     "byCustomer": "Filter by customer",
-    "search": "Search deals"
+    "search": "Search deals",
+    "dateFrom": "From",
+    "dateTo": "To",
+    "resetFilters": "Reset filters",
+    "customer": "Customer",
+    "createdDate": "Created"
   },
   "empty": {
     "title": "No deals",

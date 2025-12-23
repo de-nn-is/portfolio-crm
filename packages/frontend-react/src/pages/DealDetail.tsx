@@ -2,10 +2,12 @@ import { useQuery, useMutation } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { GET_DEAL, DELETE_DEAL, CREATE_DEAL, UPDATE_DEAL } from '../graphql/queries';
+import { GET_DEAL, DELETE_DEAL, CREATE_DEAL, UPDATE_DEAL, GET_CUSTOMERS } from '../graphql/queries';
 import { DeleteConfirmModal } from '../components/ui/DeleteConfirmModal.js';
 import { formatCurrency } from '@crm/shared-utils';
-import type { Deal } from '@crm/types';
+import type { Customer, Deal } from '@crm/types';
+import { DealStatus } from '../constants/enums';
+import { validateDealStatus, validateValue, validateCustomerId } from '../utils/validation';
 
 export const DealDetail = () => {
   const { t, i18n } = useTranslation(['deals', 'common']);
@@ -19,12 +21,20 @@ export const DealDetail = () => {
     description: '',
     value: 0,
     currency: 'EUR' as const,
-    status: 'LEAD' as const,
+    status: DealStatus.LEAD,
     startDate: new Date().toISOString().split('T')[0],
     customerId: '',
   });
 
+  const [errors, setErrors] = useState({
+    status: '',
+    value: '',
+    customerId: '',
+  });
+
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  const { data: customersData } = useQuery<{ customers: Customer[] }>(GET_CUSTOMERS);
 
   const { data, loading, error } = useQuery(GET_DEAL, {
     variables: { id },
@@ -58,6 +68,21 @@ export const DealDetail = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate before submit
+    const statusError = validateDealStatus(formData.status, t);
+    const valueError = validateValue(formData.value, t);
+    const customerIdError = validateCustomerId(formData.customerId, t);
+    
+    if (statusError || valueError || customerIdError) {
+      setErrors({ 
+        status: statusError, 
+        value: valueError,
+        customerId: customerIdError 
+      });
+      return;
+    }
+    
     if (isNewDeal) {
       await createDeal({ variables: { input: formData } });
     } else if (isEditMode) {
@@ -121,18 +146,48 @@ export const DealDetail = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                Kunde *
+              </label>
+              <select
+                required
+                value={formData.customerId}
+                onChange={(e) => setFormData({ ...formData, customerId: e.target.value })}
+                className="w-full px-4 py-2 bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-white/10 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+              >
+                <option value="">Kunde auswählen...</option>
+                {customersData?.customers?.map((customer) => (
+                  <option key={customer.id} value={customer.id}>
+                    {customer.company || `${customer.firstName} ${customer.lastName}`}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
                 {t('fields.status', { ns: 'deals' })}
               </label>
               <select
                 value={formData.status}
-                onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
-                className="w-full px-4 py-2 bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-white/10 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                onChange={(e) => {
+                  const newStatus = e.target.value as DealStatus;
+                  setFormData({ ...formData, status: newStatus });
+                  setErrors({ ...errors, status: validateDealStatus(newStatus, t) });
+                }}
+                className={`w-full px-4 py-2 bg-gray-50 dark:bg-slate-900/50 border rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 ${
+                  errors.status
+                    ? 'border-red-500 focus:ring-red-500'
+                    : 'border-gray-200 dark:border-white/10 focus:ring-purple-500'
+                }`}
               >
-                <option value="LEAD">{t('status.lead', { ns: 'deals' })}</option>
-                <option value="IN_PROGRESS">{t('status.inProgress', { ns: 'deals' })}</option>
-                <option value="WON">{t('status.won', { ns: 'deals' })}</option>
-                <option value="LOST">{t('status.lost', { ns: 'deals' })}</option>
+                <option value={DealStatus.LEAD}>{t('status.lead', { ns: 'deals' })}</option>
+                <option value={DealStatus.IN_PROGRESS}>{t('status.inProgress', { ns: 'deals' })}</option>
+                <option value={DealStatus.WON}>{t('status.won', { ns: 'deals' })}</option>
+                <option value={DealStatus.LOST}>{t('status.lost', { ns: 'deals' })}</option>
               </select>
+              {errors.status && (
+                <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.status}</p>
+              )}
             </div>
 
             <div className="md:col-span-2">
@@ -238,6 +293,15 @@ export const DealDetail = () => {
             </dt>
             <dd className="text-base text-gray-900 dark:text-white">
               {t(`status.${deal.status === 'IN_PROGRESS' ? 'inProgress' : deal.status.toLowerCase()}`, { ns: 'deals' })}
+            </dd>
+          </div>
+
+          <div>
+            <dt className="text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
+              Kunde
+            </dt>
+            <dd className="text-base text-gray-900 dark:text-white">
+              {deal.customer?.company || `${deal.customer?.firstName || ''} ${deal.customer?.lastName || ''}`.trim() || '-'}
             </dd>
           </div>
 

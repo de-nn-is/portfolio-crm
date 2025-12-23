@@ -119,4 +119,16 @@ export const resolvers = {
       return await context.db.deleteDeal(args.id);
     },
   },
+
+  Deal: {
+    customer: async (parent: any, _: any, context: Context) => {
+      return await context.db.getCustomer(parent.customerId);
+    },
+  },
+
+  Customer: {
+    deals: async (parent: any, _: any, context: Context) => {
+      return await context.db.getDealsByCustomer(parent.id);
+    },
+  },
 };

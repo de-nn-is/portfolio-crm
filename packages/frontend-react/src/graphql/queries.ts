@@ -109,6 +109,12 @@ export const GET_DEALS = gql`
       currency
       status
       customerId
+      customer {
+        id
+        firstName
+        lastName
+        company
+      }
       startDate
       endDate
       createdAt
@@ -127,6 +133,12 @@ export const GET_DEAL = gql`
       currency
       status
       customerId
+      customer {
+        id
+        firstName
+        lastName
+        company
+      }
       startDate
       endDate
       notes

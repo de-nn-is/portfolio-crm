@@ -1,4 +1,5 @@
 // Deal/Project types
+import type { Customer } from './customer.types';
 
 export enum DealStatus {
   LEAD = 'LEAD',
@@ -15,6 +16,7 @@ export interface Deal {
   currency: string;
   status: DealStatus;
   customerId: string;
+  customer?: Customer;
   startDate: Date;
   endDate?: Date;
   notes?: string;

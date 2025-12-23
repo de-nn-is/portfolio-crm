@@ -30,7 +30,8 @@
     "createFailed": "Failed to create customer",
     "updateFailed": "Failed to update customer",
     "deleteFailed": "Failed to delete customer",
-    "loadFailed": "Failed to load customers"
+    "loadFailed": "Failed to load customers",
+    "invalidStatus": "Invalid status"
   },
   "filters": {
     "all": "All",

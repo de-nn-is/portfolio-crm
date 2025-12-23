@@ -4,12 +4,8 @@ import { Link } from 'react-router-dom';
 import { useState, useMemo } from 'react';
 import { GET_CUSTOMERS } from '../graphql/queries';
 import type { Customer } from '@crm/types';
-
-const STATUS_COLORS = {
-  ACTIVE: 'bg-green-500/10 text-green-500 border-green-500/20',
-  INACTIVE: 'bg-gray-500/10 text-gray-500 border-gray-500/20',
-  LEAD: 'bg-blue-500/10 text-blue-500 border-blue-500/20',
-};
+import { StatusBadge } from '../components/ui/StatusBadge';
+import { SortIcon } from '../components/ui/SortIcon';
 
 type SortField = 'name' | 'company' | 'email' | 'status';
 type SortDirection = 'asc' | 'desc';
@@ -95,13 +91,6 @@ export const Customers = () => {
     );
   }
 
-  const SortIcon = ({ field }: { field: SortField }) => {
-    if (sortField !== field) {
-      return <span className="ml-1 text-gray-400">↕</span>;
-    }
-    return <span className="ml-1">{sortDirection === 'asc' ? '↑' : '↓'}</span>;
-  };
-
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -136,21 +125,21 @@ export const Customers = () => {
                 className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-slate-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100/50 dark:hover:bg-slate-800/50 transition-colors"
               >
                 {t('fields.name', { ns: 'customers' })}
-                <SortIcon field="name" />
+                <SortIcon field="name" currentField={sortField} direction={sortDirection} />
               </th>
               <th 
                 onClick={() => handleSort('company')}
                 className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-slate-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100/50 dark:hover:bg-slate-800/50 transition-colors"
               >
                 {t('fields.company', { ns: 'customers' })}
-                <SortIcon field="company" />
+                <SortIcon field="company" currentField={sortField} direction={sortDirection} />
               </th>
               <th 
                 onClick={() => handleSort('email')}
                 className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-slate-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100/50 dark:hover:bg-slate-800/50 transition-colors"
               >
                 {t('fields.email', { ns: 'customers' })}
-                <SortIcon field="email" />
+                <SortIcon field="email" currentField={sortField} direction={sortDirection} />
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-slate-300 uppercase tracking-wider">
                 {t('fields.phone', { ns: 'customers' })}
@@ -160,7 +149,7 @@ export const Customers = () => {
                 className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-slate-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100/50 dark:hover:bg-slate-800/50 transition-colors"
               >
                 {t('fields.status', { ns: 'customers' })}
-                <SortIcon field="status" />
+                <SortIcon field="status" currentField={sortField} direction={sortDirection} />
               </th>
               <th className="px-6 py-3 text-right text-xs font-medium text-gray-700 dark:text-slate-300 uppercase tracking-wider">
                 {t('actionsColumn', { ns: 'common' })}
@@ -191,13 +180,11 @@ export const Customers = () => {
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <span
-                    className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border ${
-                      STATUS_COLORS[customer.status]
-                    }`}
-                  >
-                    {t(`status.${customer.status.toLowerCase()}`, { ns: 'customers' })}
-                  </span>
+                  <StatusBadge 
+                    status={customer.status}
+                    label={t(`status.${customer.status.toLowerCase()}`, { ns: 'customers' })}
+                    type="customer"
+                  />
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm">
                   <Link

@@ -6,7 +6,6 @@ const NAV_ITEMS = [
   { path: '/dashboard', icon: 'dashboard', labelKey: 'nav.dashboard' },
   { path: '/customers', icon: 'people', labelKey: 'nav.customers' },
   { path: '/deals', icon: 'handshake', labelKey: 'nav.deals' },
-  { path: '/settings', icon: 'settings', labelKey: 'nav.settings' },
 ];
 
 export const Sidebar = () => {

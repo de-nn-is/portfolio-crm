@@ -33,13 +33,21 @@
     "createFailed": "Auftrag konnte nicht erstellt werden",
     "updateFailed": "Auftrag konnte nicht aktualisiert werden",
     "deleteFailed": "Auftrag konnte nicht gelöscht werden",
-    "loadFailed": "Aufträge konnten nicht geladen werden"
+    "loadFailed": "Aufträge konnten nicht geladen werden",
+    "invalidStatus": "Ungültiger Status",
+    "invalidValue": "Wert muss positiv sein",
+    "customerRequired": "Kunde muss ausgewählt werden"
   },
   "filters": {
     "all": "Alle",
     "byStatus": "Nach Status filtern",
     "byCustomer": "Nach Kunde filtern",
-    "search": "Aufträge durchsuchen"
+    "search": "Aufträge durchsuchen",
+    "dateFrom": "Von",
+    "dateTo": "Bis",
+    "resetFilters": "Filter zurücksetzen",
+    "customer": "Kunde",
+    "createdDate": "Erstellt"
   },
   "empty": {
     "title": "Keine Aufträge",

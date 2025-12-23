@@ -2,7 +2,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import type {
+import {
   User,
   Customer,
   Deal,
@@ -182,7 +182,7 @@ export class JsonService implements IDatabase {
       id: this.generateId(),
       ...input,
       currency: input.currency || 'EUR',
-      status: input.status as DealStatus || 'LEAD' as DealStatus,
+      status: input.status || DealStatus.LEAD,
       createdAt: now,
       updatedAt: now,
     };

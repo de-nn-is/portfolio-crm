@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { GET_CUSTOMER, DELETE_CUSTOMER, CREATE_CUSTOMER, UPDATE_CUSTOMER } from '../graphql/queries';
 import { DeleteConfirmModal } from '../components/ui/DeleteConfirmModal.js';
 import type { Customer } from '@crm/types';
+import { CustomerStatus } from '../constants/enums';
+import { validateEmail, validatePhone, validateCustomerStatus } from '../utils/validation';
 
 export const CustomerDetail = () => {
   const { t } = useTranslation(['customers', 'common']);
@@ -19,45 +21,25 @@ export const CustomerDetail = () => {
     email: '',
     phone: '',
     company: '',
-    status: 'LEAD' as const,
+    status: CustomerStatus.LEAD
   });
 
   const [errors, setErrors] = useState({
     email: '',
     phone: '',
+    status: '',
   });
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  const validateEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email) return '';
-    if (!emailRegex.test(email)) {
-      return t('validation.invalidEmail', { ns: 'common' });
-    }
-    return '';
-  };
-
-  const validatePhone = (phone: string) => {
-    if (!phone) return '';
-    const phoneRegex = /^[\d\s+\-()]+$/;
-    if (!phoneRegex.test(phone)) {
-      return t('validation.invalidPhone', { ns: 'common' });
-    }
-    if (phone.replace(/\D/g, '').length < 6) {
-      return t('validation.tooShort', { ns: 'common' });
-    }
-    return '';
-  };
-
   const handleEmailChange = (email: string) => {
     setFormData({ ...formData, email });
-    setErrors({ ...errors, email: validateEmail(email) });
+    setErrors({ ...errors, email: validateEmail(email, t) });
   };
 
   const handlePhoneChange = (phone: string) => {
     setFormData({ ...formData, phone });
-    setErrors({ ...errors, phone: validatePhone(phone) });
+    setErrors({ ...errors, phone: validatePhone(phone, t) });
   };
 
   const { data, loading, error } = useQuery(GET_CUSTOMER, {
@@ -93,11 +75,12 @@ export const CustomerDetail = () => {
     e.preventDefault();
     
     // Validate before submit
-    const emailError = validateEmail(formData.email);
-    const phoneError = validatePhone(formData.phone);
+    const emailError = validateEmail(formData.email, t);
+    const phoneError = validatePhone(formData.phone, t);
+    const statusError = validateCustomerStatus(formData.status, t);
     
-    if (emailError || phoneError) {
-      setErrors({ email: emailError, phone: phoneError });
+    if (emailError || phoneError || statusError) {
+      setErrors({ email: emailError, phone: phoneError, status: statusError });
       return;
     }
     
@@ -213,13 +196,24 @@ export const CustomerDetail = () => {
               </label>
               <select
                 value={formData.status}
-                onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
-                className="w-full px-4 py-2 bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-white/10 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                onChange={(e) => {
+                  const newStatus = e.target.value as CustomerStatus;
+                  setFormData({ ...formData, status: newStatus });
+                  setErrors({ ...errors, status: validateCustomerStatus(newStatus, t) });
+                }}
+                className={`w-full px-4 py-2 bg-gray-50 dark:bg-slate-900/50 border rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 ${
+                  errors.status
+                    ? 'border-red-500 focus:ring-red-500'
+                    : 'border-gray-200 dark:border-white/10 focus:ring-purple-500'
+                }`}
               >
-                <option value="LEAD">{t('status.lead', { ns: 'customers' })}</option>
-                <option value="ACTIVE">{t('status.active', { ns: 'customers' })}</option>
-                <option value="INACTIVE">{t('status.inactive', { ns: 'customers' })}</option>
+                <option value={CustomerStatus.LEAD}>{t('status.lead', { ns: 'customers' })}</option>
+                <option value={CustomerStatus.ACTIVE}>{t('status.active', { ns: 'customers' })}</option>
+                <option value={CustomerStatus.INACTIVE}>{t('status.inactive', { ns: 'customers' })}</option>
               </select>
+              {errors.status && (
+                <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.status}</p>
+              )}
             </div>
           </div>
 
@@ -233,7 +227,7 @@ export const CustomerDetail = () => {
             </button>
             <button
               type="submit"
-              disabled={creating || updating || !!errors.email || !!errors.phone}
+              disabled={creating || updating || !!errors.email || !!errors.phone || !!errors.status}
               className="px-6 py-2.5 rounded-lg bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-medium hover:from-cyan-600 hover:to-purple-600 transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {creating || updating ? '...' : t('save', { ns: 'common' })}
