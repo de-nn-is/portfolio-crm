@@ -5,6 +5,12 @@
   "delete": "Delete Customer",
   "details": "Customer Details",
   "list": "Customer List",
+  "revenueChart": {
+    "title": "Revenue Overview",
+    "won": "Won",
+    "pending": "Pending",
+    "lost": "Lost"
+  },
   "fields": {
     "name": "Name",
     "email": "Email",

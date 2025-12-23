@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "Portfolio CRM",
-    "tagline": "Verwalten Sie Ihre Kunden und Deals"
+    "tagline": "Verwalten Sie Ihre Kunden und Aufträge"
   },
   "nav": {
     "dashboard": "Dashboard",
@@ -13,7 +13,7 @@
   "navigation": {
     "dashboard": "Dashboard",
     "customers": "Kunden",
-    "deals": "Deals",
+    "deals": "Aufträge",
     "profile": "Profil",
     "logout": "Abmelden"
   },

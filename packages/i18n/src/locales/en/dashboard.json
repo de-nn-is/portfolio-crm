@@ -1,6 +1,7 @@
 {
   "title": "Dashboard",
   "welcome": "Welcome back",
+  "revenueByMonth": "Revenue by Month ({{year}})",
   "stats": {
     "totalCustomers": "Total Customers",
     "activeCustomers": "Active Customers",

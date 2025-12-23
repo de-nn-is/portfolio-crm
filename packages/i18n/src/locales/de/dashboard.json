@@ -1,11 +1,12 @@
 {
   "title": "Dashboard",
   "welcome": "Willkommen zurück",
+  "revenueByMonth": "Umsatz nach Monat ({{year}})",
   "stats": {
     "totalCustomers": "Kunden gesamt",
     "activeCustomers": "Aktive Kunden",
-    "totalDeals": "Deals gesamt",
-    "wonDeals": "Gewonnene Deals",
+    "totalDeals": "Aufträge gesamt",
+    "wonDeals": "Gewonnene Aufträge",
     "revenue": "Umsatz",
     "growth": "Wachstum"
   },
@@ -16,6 +17,6 @@
   "charts": {
     "salesOverview": "Verkaufsübersicht",
     "customerGrowth": "Kundenwachstum",
-    "dealsPipeline": "Deal-Pipeline"
+    "dealsPipeline": "Auftrags-Pipeline"
   }
 }

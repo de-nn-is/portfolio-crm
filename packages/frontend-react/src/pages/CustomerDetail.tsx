@@ -1,19 +1,24 @@
 import { useQuery, useMutation } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { GET_CUSTOMER, DELETE_CUSTOMER, CREATE_CUSTOMER, UPDATE_CUSTOMER } from '../graphql/queries';
+import { useState, useMemo } from 'react';
+import { GET_CUSTOMER, DELETE_CUSTOMER, CREATE_CUSTOMER, UPDATE_CUSTOMER, GET_DEALS } from '../graphql/queries';
 import { DeleteConfirmModal } from '../components/ui/DeleteConfirmModal.js';
 import type { Customer } from '@crm/types';
 import { CustomerStatus } from '../constants/enums';
 import { validateEmail, validatePhone, validateCustomerStatus } from '../utils/validation';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 
 export const CustomerDetail = () => {
-  const { t } = useTranslation(['customers', 'common']);
+  const { t, i18n } = useTranslation(['customers', 'common']);
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const isNewCustomer = id === 'new';
   const isEditMode = window.location.pathname.includes('/edit');
+
+  // EUR to USD conversion rate (as of Dec 2025: ~1.10)
+  const EUR_TO_USD = 1.10;
+  const currency = i18n.language === 'en' ? 'USD' : 'EUR';
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -59,6 +64,14 @@ export const CustomerDetail = () => {
     },
   });
 
+  // Fetch all deals for this customer
+  const { data: dealsData } = useQuery(GET_DEALS, {
+    variables: { 
+      pagination: { limit: 1000, offset: 0 }
+    },
+    skip: !id || isNewCustomer || isEditMode,
+  });
+
   const [createCustomer, { loading: creating }] = useMutation(CREATE_CUSTOMER, {
     onCompleted: () => navigate('/customers'),
   });
@@ -70,6 +83,42 @@ export const CustomerDetail = () => {
   const [deleteCustomer] = useMutation(DELETE_CUSTOMER, {
     onCompleted: () => navigate('/customers'),
   });
+
+  // Calculate revenue stats from deals
+  const revenueStats = useMemo(() => {
+    if (!dealsData?.deals || !id) return null;
+
+    interface Deal {
+      status: string;
+      value: number;
+      customerId: string;
+    }
+
+    // Filter deals for this specific customer
+    const customerDeals = dealsData.deals.filter((deal: Deal) => deal.customerId === id);
+    
+    if (customerDeals.length === 0) return null;
+
+    const stats = customerDeals.reduce((acc: { won: number; pending: number; lost: number }, deal: Deal) => {
+      const value = currency === 'USD' ? deal.value * EUR_TO_USD : deal.value;
+      
+      if (deal.status === 'WON') {
+        acc.won += value;
+      } else if (deal.status === 'LEAD' || deal.status === 'IN_PROGRESS') {
+        acc.pending += value;
+      } else if (deal.status === 'LOST') {
+        acc.lost += value;
+      }
+      
+      return acc;
+    }, { won: 0, pending: 0, lost: 0 });
+
+    return [
+      { name: t('revenueChart.won', { ns: 'customers' }), value: stats.won, color: '#10b981' },
+      { name: t('revenueChart.pending', { ns: 'customers' }), value: stats.pending, color: '#f59e0b' },
+      { name: t('revenueChart.lost', { ns: 'customers' }), value: stats.lost, color: '#ef4444' },
+    ].filter(item => item.value > 0);
+  }, [dealsData, currency, t, EUR_TO_USD, id]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -348,6 +397,50 @@ export const CustomerDetail = () => {
           )}
         </dl>
       </div>
+
+      {/* Revenue Chart */}
+      {revenueStats && revenueStats.length > 0 && (
+        <div className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-xl rounded-xl p-6 border border-gray-200/50 dark:border-white/10">
+          <h2 className="text-xl font-semibold text-gray-700 dark:text-slate-300 mb-6">
+            {t('revenueChart.title', { ns: 'customers' })}
+          </h2>
+          <ResponsiveContainer width="100%" height={300}>
+            <PieChart>
+              <Pie
+                data={revenueStats}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                label={({ name, percent }) => `${name}: ${((percent || 0) * 100).toFixed(0)}%`}
+                outerRadius={100}
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {revenueStats.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Pie>
+              <Tooltip 
+                formatter={(value: number | undefined) => 
+                  value !== undefined
+                    ? new Intl.NumberFormat(i18n.language, {
+                        style: 'currency',
+                        currency: currency,
+                      }).format(value)
+                    : '0'
+                }
+                contentStyle={{
+                  backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                  border: '1px solid rgba(0, 0, 0, 0.1)',
+                  borderRadius: '8px',
+                  color: '#374151',
+                }}
+              />
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      )}
     </div>
   );
 };
