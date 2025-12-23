@@ -7,10 +7,16 @@
   "list": "Auftragsliste",
   "fields": {
     "title": "Titel",
+    "titlePlaceholder": "Auftragstitel",
     "description": "Beschreibung",
+    "descriptionPlaceholder": "Beschreibung des Auftrags...",
     "value": "Wert",
     "customer": "Kunde",
+    "selectCustomer": "Kunde auswählen...",
     "status": "Status",
+    "startDate": "Startdatum",
+    "endDate": "Enddatum",
+    "notes": "Notizen",
     "createdAt": "Erstellt am",
     "updatedAt": "Aktualisiert am",
     "closedAt": "Abgeschlossen am"

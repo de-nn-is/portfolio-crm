@@ -23,6 +23,7 @@ export const DealDetail = () => {
     currency: 'EUR' as const,
     status: DealStatus.LEAD,
     startDate: new Date().toISOString().split('T')[0],
+    endDate: '',
     customerId: '',
   });
 
@@ -48,6 +49,7 @@ export const DealDetail = () => {
           currency: result.deal.currency,
           status: result.deal.status,
           startDate: result.deal.startDate.split('T')[0],
+          endDate: result.deal.endDate ? result.deal.endDate.split('T')[0] : '',
           customerId: result.deal.customerId || '',
         });
       }
@@ -125,7 +127,7 @@ export const DealDetail = () => {
                 value={formData.title}
                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                 className="w-full px-4 py-2 bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-white/10 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-                placeholder="Auftragstitel"
+                placeholder={t('fields.titlePlaceholder', { ns: 'deals' })}
               />
             </div>
 
@@ -146,7 +148,7 @@ export const DealDetail = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
-                Kunde *
+                {t('fields.customer', { ns: 'deals' })} *
               </label>
               <select
                 required
@@ -154,7 +156,7 @@ export const DealDetail = () => {
                 onChange={(e) => setFormData({ ...formData, customerId: e.target.value })}
                 className="w-full px-4 py-2 bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-white/10 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
               >
-                <option value="">Kunde auswählen...</option>
+                <option value="">{t('fields.selectCustomer', { ns: 'deals' })}</option>
                 {customersData?.customers?.map((customer) => (
                   <option key={customer.id} value={customer.id}>
                     {customer.company || `${customer.firstName} ${customer.lastName}`}
@@ -164,6 +166,30 @@ export const DealDetail = () => {
             </div>
 
             <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                {t('fields.startDate', { ns: 'deals' })}
+              </label>
+              <input
+                type="date"
+                value={formData.startDate}
+                onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
+                className="w-full px-4 py-2 bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-white/10 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                {t('fields.endDate', { ns: 'deals' })}
+              </label>
+              <input
+                type="date"
+                value={formData.endDate || ''}
+                onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
+                className="w-full px-4 py-2 bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-white/10 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+              />
+            </div>
+
+            <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
                 {t('fields.status', { ns: 'deals' })}
               </label>
@@ -199,7 +225,7 @@ export const DealDetail = () => {
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 rows={4}
                 className="w-full px-4 py-2 bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-white/10 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-                placeholder="Beschreibung des Auftrags..."
+                placeholder={t('fields.descriptionPlaceholder', { ns: 'deals' })}
               />
             </div>
           </div>
@@ -298,32 +324,30 @@ export const DealDetail = () => {
 
           <div>
             <dt className="text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
-              Kunde
-            </dt>
-            <dd className="text-base text-gray-900 dark:text-white">
-              {deal.customer?.company || `${deal.customer?.firstName || ''} ${deal.customer?.lastName || ''}`.trim() || '-'}
-            </dd>
-          </div>
-
-          <div>
-            <dt className="text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
-              Startdatum
+              {t('fields.startDate', { ns: 'deals' })}
             </dt>
             <dd className="text-base text-gray-900 dark:text-white">
               {new Date(deal.startDate).toLocaleDateString(i18n.language === 'en' ? 'en-US' : 'de-DE')}
             </dd>
           </div>
 
-          {deal.endDate && (
-            <div>
-              <dt className="text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
-                Enddatum
-              </dt>
-              <dd className="text-base text-gray-900 dark:text-white">
-                {new Date(deal.endDate).toLocaleDateString(i18n.language === 'en' ? 'en-US' : 'de-DE')}
-              </dd>
-            </div>
-          )}
+          <div>
+            <dt className="text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
+              {t('fields.endDate', { ns: 'deals' })}
+            </dt>
+            <dd className="text-base text-gray-900 dark:text-white">
+              {deal.endDate ? new Date(deal.endDate).toLocaleDateString(i18n.language === 'en' ? 'en-US' : 'de-DE') : '-'}
+            </dd>
+          </div>
+
+          <div>
+            <dt className="text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
+              {t('fields.customer', { ns: 'deals' })}
+            </dt>
+            <dd className="text-base text-gray-900 dark:text-white">
+              {deal.customer?.company || `${deal.customer?.firstName || ''} ${deal.customer?.lastName || ''}`.trim() || '-'}
+            </dd>
+          </div>
 
           {deal.description && (
             <div className="md:col-span-2">
@@ -337,7 +361,7 @@ export const DealDetail = () => {
           {deal.notes && (
             <div className="md:col-span-2">
               <dt className="text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
-                Notizen
+                {t('fields.notes', { ns: 'deals' })}
               </dt>
               <dd className="text-base text-gray-900 dark:text-white whitespace-pre-wrap">
                 {deal.notes}

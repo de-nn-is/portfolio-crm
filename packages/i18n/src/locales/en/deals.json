@@ -7,10 +7,16 @@
   "list": "Deal List",
   "fields": {
     "title": "Title",
+    "titlePlaceholder": "Deal title",
     "description": "Description",
+    "descriptionPlaceholder": "Deal description...",
     "value": "Value",
     "customer": "Customer",
+    "selectCustomer": "Select customer...",
     "status": "Status",
+    "startDate": "Start date",
+    "endDate": "End date",
+    "notes": "Notes",
     "createdAt": "Created at",
     "updatedAt": "Updated at",
     "closedAt": "Closed at"
