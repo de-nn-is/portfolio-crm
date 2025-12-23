@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 
 interface DeleteConfirmModalProps {
@@ -23,6 +24,17 @@ export const DeleteConfirmModal = ({
   const [inputValue, setInputValue] = useState('');
   const confirmText = companyName || customerName;
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const handleConfirm = () => {
@@ -34,8 +46,8 @@ export const DeleteConfirmModal = ({
 
   const isValid = inputValue === confirmText;
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+  const modalContent = (
+    <div className="fixed top-0 left-0 right-0 bottom-0 z-[100] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
       <div className="bg-white dark:bg-slate-800 rounded-xl shadow-2xl max-w-md w-full border border-gray-200 dark:border-white/10 overflow-hidden">
         {/* Header */}
         <div className="bg-gradient-to-r from-red-500 to-pink-500 p-6">
@@ -53,7 +65,7 @@ export const DeleteConfirmModal = ({
           
           <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-500/20 rounded-lg p-4">
             <p className="text-sm text-red-800 dark:text-red-300 mb-2">
-              Geben Sie zur Bestätigung ein: <strong className="font-mono">{confirmText}</strong>
+              {t('messages.confirmDelete', { ns: namespace })} <strong className="font-mono">{confirmText}</strong>
             </p>
             <input
               type="text"
@@ -66,7 +78,7 @@ export const DeleteConfirmModal = ({
           </div>
 
           <p className="text-sm text-gray-600 dark:text-slate-400">
-            Diese Aktion kann nicht rückgängig gemacht werden.
+            {t('messages.deleteWarning', { ns: namespace })}
           </p>
         </div>
 
@@ -92,4 +104,6 @@ export const DeleteConfirmModal = ({
       </div>
     </div>
   );
+
+  return createPortal(modalContent, document.body);
 };

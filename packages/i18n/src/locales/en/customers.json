@@ -24,6 +24,8 @@
     "updateSuccess": "Customer updated successfully",
     "deleteSuccess": "Customer deleted successfully",
     "deleteConfirm": "Are you sure you want to delete this customer?",
+    "confirmDelete": "Enter to confirm:",
+    "deleteWarning": "This action cannot be undone.",
     "notFound": "Customer not found"
   },
   "errors": {

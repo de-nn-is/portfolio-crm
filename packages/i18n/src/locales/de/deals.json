@@ -32,6 +32,8 @@
     "updateSuccess": "Auftrag erfolgreich aktualisiert",
     "deleteSuccess": "Auftrag erfolgreich gelöscht",
     "deleteConfirm": "Möchten Sie diesen Auftrag wirklich löschen?",
+    "confirmDelete": "Geben Sie zur Bestätigung ein:",
+    "deleteWarning": "Diese Aktion kann nicht rückgängig gemacht werden.",
     "notFound": "Auftrag nicht gefunden",
     "statusChanged": "Status erfolgreich geändert"
   },

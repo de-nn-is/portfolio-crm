@@ -24,6 +24,8 @@
     "updateSuccess": "Kunde erfolgreich aktualisiert",
     "deleteSuccess": "Kunde erfolgreich gelöscht",
     "deleteConfirm": "Möchten Sie diesen Kunden wirklich löschen?",
+    "confirmDelete": "Geben Sie zur Bestätigung ein:",
+    "deleteWarning": "Diese Aktion kann nicht rückgängig gemacht werden.",
     "notFound": "Kunde nicht gefunden"
   },
   "errors": {

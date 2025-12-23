@@ -32,6 +32,8 @@
     "updateSuccess": "Deal updated successfully",
     "deleteSuccess": "Deal deleted successfully",
     "deleteConfirm": "Are you sure you want to delete this deal?",
+    "confirmDelete": "Enter to confirm:",
+    "deleteWarning": "This action cannot be undone.",
     "notFound": "Deal not found",
     "statusChanged": "Status changed successfully"
   },
